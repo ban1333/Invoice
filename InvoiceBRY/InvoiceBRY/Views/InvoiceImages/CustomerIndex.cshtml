@@ -1,0 +1,29 @@
+﻿@model IEnumerable<InvoiceBRY.Models.InvoiceImage>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+@if (!Model.Any())
+{
+    <p>
+        <a asp-action="CreateCustomer" asp-route-invoiceId="@ViewData["invoiceId"]" asp-route-name="@ViewData["name"]" asp-route-customerId="@ViewData["customerId"]" asp-route-HST="@ViewData["HST"]">Set an image</a>
+    </p>
+}
+else
+{
+    <!-- EDIT -->
+    @foreach (var item in Model)
+    {
+        <p>
+            <a asp-action="EditCustomer" asp-route-id="@item.ImageId" asp-route-invoiceId="@ViewData["invoiceId"]" asp-route-name="@ViewData["name"]" asp-route-customerId="@ViewData["customerId"]" asp-route-HST="@ViewData["HST"]">Change Picture</a>
+        </p>
+        <img src="~/images/upload/@item.Image" />
+    }
+    
+}
+<br />
+<a asp-controller="Invoices" asp-action="CustomerIndex" asp-route-customerId="@ViewData["customerId"]" asp-route-firstName="@ViewData["name"]" asp-route-HST="@ViewData["HST"]">Back to Invoice</a>

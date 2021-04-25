@@ -1,0 +1,84 @@
+﻿@model IEnumerable<InvoiceBRY.Models.Invoice>
+
+@{
+    ViewData["Title"] = "Invoices";
+}
+
+<h1>Invoice For @ViewData["name"]</h1>
+
+<p>
+    <a asp-action="CreateSubcontractor" asp-route-subcontractorId="@ViewData["subcontractorId"]" asp-route-HST="@ViewData["HST"]">Create New Invoice</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPaid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPaid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                <a asp-controller="InvoiceDescriptions" asp-action="CreateSubcontractor" asp-route-invoiceId="@item.InvoiceId" asp-route-name="@ViewData["name"]" asp-route-subcontractorId="@ViewData["subcontractorId"]" asp-route-HST="@ViewData["HST"]">Add Description</a>
+            </td>
+            <td>
+                <a asp-controller="InvoiceDescriptions" asp-action="SubcontractorIndex" asp-route-invoiceId="@item.InvoiceId" asp-route-name="@ViewData["name"]" asp-route-subcontractorId="@ViewData["subcontractorId"]" asp-route-HST="@ViewData["HST"]">View Description</a>
+            </td>
+            <td>
+                <a asp-controller="InvoiceImages" asp-action="Index" asp-route-invoiceId="@item.InvoiceId" asp-route-name="@ViewData["name"]" asp-route-subcontractorId="@ViewData["subcontractorId"]" asp-route-HST="@ViewData["HST"]">View Image</a>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.InvoiceId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.InvoiceId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.InvoiceId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

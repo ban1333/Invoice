@@ -1,0 +1,43 @@
+﻿@model IEnumerable<InvoiceBRY.Models.InvoiceDescription>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Invoice Descriptions</h1>
+
+<p>
+    <a asp-action="CreateSubcontractor" asp-route-invoiceId="@ViewData["invoiceId"]" asp-route-name="@ViewData["name"]" asp-route-subcontractorId="@ViewData["subcontractorId"]" asp-route-HST="@ViewData["HST"]">Create New Description</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-action="EditSubcontractor" asp-route-id="@item.DescriptionId" asp-route-invoiceId="@item.InvoiceId" asp-route-name="@ViewData["name"]" asp-route-subcontractorId="@ViewData["subcontractorId"]" asp-route-HST="@ViewData["HST"]">Edit</a> |
+                    <a asp-action="SubcontractorDetails" asp-route-id="@item.DescriptionId" asp-route-invoiceId="@item.InvoiceId" asp-route-name="@ViewData["name"]" asp-route-subcontractorId="@ViewData["subcontractorId"]" asp-route-HST="@ViewData["HST"]">Details</a> |
+                    <a asp-action="DeleteSubcontractor" asp-route-id="@item.DescriptionId" asp-route-invoiceId="@item.InvoiceId" asp-route-name="@ViewData["name"]" asp-route-subcontractorId="@ViewData["subcontractorId"]" asp-route-HST="@ViewData["HST"]">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="Invoices" asp-action="SubcontractorIndex" asp-route-subcontractorId="@ViewData["subcontractorId"]" asp-route-firstName="@ViewData["name"]" asp-route-HST="@ViewData["HST"]">View @ViewData["name"]'s Invoices</a>

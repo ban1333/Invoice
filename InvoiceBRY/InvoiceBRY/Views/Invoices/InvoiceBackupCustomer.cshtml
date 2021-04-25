@@ -1,0 +1,30 @@
+﻿@model IEnumerable<InvoiceBRY.Models.Invoice>
+
+@{
+    ViewData["Title"] = "Invoices";
+}
+
+<h1>Invoice For @ViewData["name"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)<br />
+                    @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

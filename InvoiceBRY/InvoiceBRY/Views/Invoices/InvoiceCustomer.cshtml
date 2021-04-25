@@ -1,0 +1,100 @@
+﻿@model IEnumerable<InvoiceBRY.Models.Invoice>
+
+@{
+    ViewData["Title"] = "Invoices";
+}
+
+@foreach (var item in Model)
+{
+    @Html.DisplayFor(modelItem => item.InvoiceId)
+    <form id="form1" runat="server">
+        <div class="invoice">
+            <header>
+                <div class="company-address">
+                    Please make payments payable to:
+                    <br />
+                    Daniel Isaacs
+                    <br />
+                    151 Harding Street
+                    <br />
+                    Kitchener, Ontario, N2E 4L1
+                    <br />
+                </div>
+                <div class="invoice-details">
+                    INVOICE #
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Date)
+                </div>
+            </header>
+            <section>
+                <div class="customer-address">
+                    Bill To: @Html.DisplayFor(modelItem => item.Customer.FirstName) @Html.DisplayFor(modelItem => item.Customer.LastName)
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Customer.Address)
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Customer.City)
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Customer.State)
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Customer.AptUnitOrSuit)
+                    <br />
+                </div>
+            </section>
+            <div class="clear-fix"></div>
+            <section>
+                <div class="item-table-panel">
+                    <table border='0' cellspacing='0' class="item-table">
+                        <tr>
+                            <th class="text-center">Description</th>
+                            <th class="text-center">Number of Hours</th>
+                            <th class="text-center">Rate</th>
+                            <th class="text-center">AMOUNT</th>
+                        </tr>
+
+
+                        <tr>
+                            <td></td>
+                            <td class='text-center'>@Html.DisplayFor(modelItem => item.NumberOfHours)</td>
+                            <td class='text-center'>@Html.DisplayFor(modelItem => item.Rate)</td>
+                            <td class='text-right'>@Html.DisplayFor(modelItem => item.Rate * item.NumberOfHours)</td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-left">Sub-Total</td>
+                            <td></td>
+                            <td></td>
+                            <td>@Html.DisplayFor(modelItem => item.SubTotal)</td>
+                        </tr>
+                        <tr>
+                            <td>HST @Html.DisplayFor(modelItem => item.Tax)%</td>
+                            <td></td>
+                            <td></td>
+                            <td>@Html.DisplayFor(modelItem => item.Rate)</td>
+                        </tr>
+                        <tr>
+                            <td>TOTAL</td>
+                            <td></td>
+                            <td></td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>
+                        </tr>
+                    </table>
+                    <br />
+                    <br />
+                    <br />
+                    <p class="text-center">if you have any questions concerning this invoice please contact: accounts_receivable@isaacssoftware.com</p>
+                    <br />
+                    HST # @Html.DisplayFor(modelItem => item.Tax)
+                    <br />
+                    <br />
+                    <p class="font-weight-bold"> 
+                        THANK YOU FOR YOUR BUSINESS!
+                        <br />
+                        PLEASE REFER US WITH YOUR FAMILY AND FRIENDS FOR ANY SOFTWARE NEED!
+                        <br />
+                        FOR FURTHER INFO ABOUT OUR SERVICES VISIT www.isaacssoftware.com
+                    </p>
+                </div>
+            </section>
+        </div>
+    </form>
+}

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<InvoiceBRY.Models.Subcontractor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Subcontractors</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                View Invoice
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-controller="Invoices" asp-action="SubcontractorIndex" asp-route-subcontractorId="@item.SubcontractorId" asp-route-firstName="@item.FirstName" asp-route-lastName="@item.LastName" asp-route-HST="@item.HstAmount">View Invoices</a>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SubcontractorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SubcontractorId">More Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SubcontractorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,30 @@
+﻿@model InvoiceBRY.Models.InvoiceDescription
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>InvoiceDescription</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.InvoiceId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.InvoiceId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditSubcontractor" asp-route-id="@Model.DescriptionId" asp-route-invoiceId="@ViewData["invoiceId"]" asp-route-name="@ViewData["name"]" asp-route-subcontractorId="@ViewData["subcontractorId"]" asp-route-HST="@ViewData["HST"]">Edit</a> |
+    <a asp-action="SubcontractorIndex" asp-route-invoiceId="@ViewData["invoiceId"]" asp-route-name="@ViewData["name"]" asp-route-subcontractorId="@ViewData["subcontractorId"]" asp-route-HST="@ViewData["HST"]">Back to List</a>
+</div>
